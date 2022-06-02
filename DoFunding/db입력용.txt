@@ -24,7 +24,8 @@ create table do_members(
 	address2 varchar2(100),		
 	accountbank varchar2(50),	
 	account varchar2(30),		
-	mpoint number default 0 	
+	mpoint number default 0,
+	loginType number default 0  	
 ) ;
 
 

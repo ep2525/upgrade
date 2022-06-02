@@ -77,4 +77,23 @@ public class MemberLoginController {
 			}
 		}
 	}
+	
+	@RequestMapping(value ="/kakao-login.mem",method = RequestMethod.POST)
+	public ModelAndView doAction(
+			@RequestParam(value="email", required=false) String email,
+			@RequestParam(value="name", required=false) String name,
+			//@RequestParam(value="img", required=false) String img,
+			@RequestParam(value="gender", required=false) String gender,
+			@RequestParam(value="birthday", required=false) String birthday
+			) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("email:"+email);
+		System.out.println("name:"+name);
+		System.out.println("gender:"+gender);
+		System.out.println("birthday:"+birthday);
+		
+		mav.setViewName(getPage);
+		return mav;
+	}	
+	
 }
