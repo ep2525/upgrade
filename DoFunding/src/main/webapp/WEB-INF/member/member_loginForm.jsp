@@ -65,9 +65,10 @@
 			</a>
 		</div>
 		<form id="form-kakao-login" method="post" action="kakao-login.mem">
-			<input type="hidden" name="email" /> <input type="hidden" name="name" />
+			<input type="hidden" name="email" /> <input type="hidden" name="name1" />
 			<input type="hidden" name="gender" /> <input type="hidden" name="birthday" />
-			<input type="hidden" name="img" />
+			<input type="hidden" name="img" />  
+			<!-- 사업자 등록 필요 <input type="hidden" name="phone" /> -->			
 		</form>
 	</div>
 </center>
@@ -90,10 +91,12 @@
 							// 사용자 정보를 가져와서 폼에 추가.
 							var account = response.kakao_account;
 							
-							$('#form-kakao-login input[name=email]').val(account.account_email);
-							$('#form-kakao-login input[name=name]').val(account.profile_nickname);
-							$('#form-kakao-login input[name=img]').val(account.profile_image);
+							$('#form-kakao-login input[name=email]').val(account.email);
+							$('#form-kakao-login input[name=name1]').val(account.profile.nickname);
+							$('#form-kakao-login input[name=img]').val(account.profile.profile_image_url);
 							$('#form-kakao-login input[name=gender]').val(account.gender);
+							//사업자등록 필요
+							//$('#form-kakao-login input[name=phone]').val(account.phone_number);
 							$('#form-kakao-login input[name=birthday]').val(account.birthday);
 							// 사용자 정보가 포함된 폼을 서버로 제출한다.
 							document.querySelector('#form-kakao-login').submit();

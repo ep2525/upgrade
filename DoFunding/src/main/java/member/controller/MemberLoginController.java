@@ -21,6 +21,7 @@ public class MemberLoginController {
 	private final String command = "/login.mem";
 	private final String getPage = "member_loginForm";
 	private String gotoPage = "redirect:/list.prd";
+	
 	@Autowired
 	MemberDao mdao;
 	
@@ -78,19 +79,38 @@ public class MemberLoginController {
 		}
 	}
 	
+	//kakaologin
+	
 	@RequestMapping(value ="/kakao-login.mem",method = RequestMethod.POST)
 	public ModelAndView doAction(
 			@RequestParam(value="email", required=false) String email,
-			@RequestParam(value="name", required=false) String name,
-			//@RequestParam(value="img", required=false) String img,
+			@RequestParam(value="name1", required=false) String name,
+			@RequestParam(value="img", required=false) String img,
 			@RequestParam(value="gender", required=false) String gender,
+			//@RequestParam(value="phone", required=false) String phone,
 			@RequestParam(value="birthday", required=false) String birthday
 			) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("email:"+email);
 		System.out.println("name:"+name);
+		System.out.println("img:"+img);
 		System.out.println("gender:"+gender);
+		//System.out.println("phone:"+phone);
 		System.out.println("birthday:"+birthday);
+		
+		MemberBean mb1= new MemberBean();
+		//이메일이 아이디
+		mb1.setId("kakao"+email);
+		//닉네임이 이름
+		mb1.setName(name);
+		//성별 받아온거 가공
+		if(gender.equals("mail")) {
+			mb1.setGender("남");			
+		}
+		else {
+			mb1.setGender("여");						
+		}
+		mb1.setBirthday(birthday);
 		
 		mav.setViewName(getPage);
 		return mav;
